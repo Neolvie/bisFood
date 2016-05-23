@@ -1,0 +1,55 @@
+﻿<views:WindowBase x:Class="ManagerClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:pages="clr-namespace:ManagerClient.View.Pages"
+        xmlns:views="clr-namespace:ManagerClient.View"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ManagerClient"
+        xmlns:fluent="clr-namespace:Fluent;assembly=Fluent"       
+        mc:Ignorable="d"
+        Icon="Images/mainicon.ico"
+        WindowState="Maximized"              
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        WindowStartupLocation="CenterScreen"
+        Title="Управление рестораном - BISFood" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <fluent:Ribbon Grid.Row="0">
+            <fluent:Ribbon.Menu>
+                <fluent:Backstage>
+                    <fluent:BackstageTabControl>
+                        <fluent:BackstageTabItem Header="Рабочий стол">
+                        </fluent:BackstageTabItem>
+                    </fluent:BackstageTabControl>
+                </fluent:Backstage>
+            </fluent:Ribbon.Menu>
+            
+            <fluent:RibbonTabItem Header="Главная">
+                <fluent:RibbonGroupBox Header="Создать">
+                    <fluent:Button Name="CreateProductMenu" Margin="5,0,5,0" Click="CreateProduct_OnClick" Size="Large" Header="Продукт" LargeIcon="Images\mainicon.ico"/>
+                    <fluent:Button Name="CreatePrepackMenu" Margin="5,0,5,0" Click="CreatePrepack_OnClick" Size="Large" Header="Полуфабрикат" LargeIcon="Images\mainicon.ico"/>
+                    <fluent:Button Name="CreateDishMenu" Margin="5,0,5,0" Click="CreateDishMenu_OnClick" Size="Large" Header="Блюдо" LargeIcon="Images\mainicon.ico"/>
+                </fluent:RibbonGroupBox>
+                <fluent:RibbonGroupBox Header="База данных">
+                    <fluent:Button Name="LoadRecordsManu" Margin="5,0,5,0" Click="LoadRecordsManu_OnClick" Size="Large" Header="Получить записи" LargeIcon="Images\mainicon.ico"/>
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+        </fluent:Ribbon>
+        <pages:MainPage x:Name="MainPage" Grid.Row="1"/>
+        <fluent:StatusBar x:Name="StatusBar" Grid.Row="2" Visibility="Visible"
+                          Height="22"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Center">
+            <fluent:StatusBarItem Title="Количество записей" Value="5" HorizontalAlignment="Left">
+                <TextBlock Text="{Binding TotalRecordCount, StringFormat=Количество записей: {0}}" 
+                           Foreground="White" FontFamily="SegoeUI"/>
+            </fluent:StatusBarItem>
+            <Separator HorizontalAlignment="Left" />
+        </fluent:StatusBar>
+    </Grid>
+</views:WindowBase>

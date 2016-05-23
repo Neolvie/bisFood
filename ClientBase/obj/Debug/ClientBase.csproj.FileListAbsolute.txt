@@ -1,0 +1,14 @@
+D:\Projects\bisFood\bisFood\ClientBase\obj\Debug\ClientBase.csprojResolveAssemblyReference.cache
+D:\Projects\bisFood\bisFood\ClientBase\bin\Debug\ClientBase.dll
+D:\Projects\bisFood\bisFood\ClientBase\bin\Debug\ClientBase.pdb
+D:\Projects\bisFood\bisFood\ClientBase\bin\Debug\Shared.dll
+D:\Projects\bisFood\bisFood\ClientBase\bin\Debug\NHibernate.dll
+D:\Projects\bisFood\bisFood\ClientBase\bin\Debug\FluentNHibernate.dll
+D:\Projects\bisFood\bisFood\ClientBase\bin\Debug\Iesi.Collections.dll
+D:\Projects\bisFood\bisFood\ClientBase\bin\Debug\Shared.pdb
+D:\Projects\bisFood\bisFood\ClientBase\bin\Debug\NHibernate.xml
+D:\Projects\bisFood\bisFood\ClientBase\bin\Debug\FluentNHibernate.pdb
+D:\Projects\bisFood\bisFood\ClientBase\bin\Debug\FluentNHibernate.xml
+D:\Projects\bisFood\bisFood\ClientBase\bin\Debug\Iesi.Collections.xml
+D:\Projects\bisFood\bisFood\ClientBase\obj\Debug\ClientBase.dll
+D:\Projects\bisFood\bisFood\ClientBase\obj\Debug\ClientBase.pdb
