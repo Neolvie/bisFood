@@ -1,0 +1,11 @@
+D:\Projects\bisFood\bisFood\Shared\bin\Release\Shared.dll
+D:\Projects\bisFood\bisFood\Shared\bin\Release\Shared.pdb
+D:\Projects\bisFood\bisFood\Shared\bin\Release\FluentNHibernate.dll
+D:\Projects\bisFood\bisFood\Shared\bin\Release\Iesi.Collections.dll
+D:\Projects\bisFood\bisFood\Shared\bin\Release\NHibernate.dll
+D:\Projects\bisFood\bisFood\Shared\bin\Release\FluentNHibernate.pdb
+D:\Projects\bisFood\bisFood\Shared\bin\Release\FluentNHibernate.xml
+D:\Projects\bisFood\bisFood\Shared\bin\Release\Iesi.Collections.xml
+D:\Projects\bisFood\bisFood\Shared\bin\Release\NHibernate.xml
+D:\Projects\bisFood\bisFood\Shared\obj\Release\Shared.dll
+D:\Projects\bisFood\bisFood\Shared\obj\Release\Shared.pdb

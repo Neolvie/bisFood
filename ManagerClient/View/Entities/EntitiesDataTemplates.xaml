@@ -1,0 +1,172 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ManagerClient.View.Entities"
+                    xmlns:units="clr-namespace:Shared.Extenders;assembly=Shared"
+                    xmlns:converters="clr-namespace:ManagerClient.Converters"
+                    xmlns:viewModel="clr-namespace:ClientBase.ViewModel;assembly=ClientBase">
+
+    <DataTemplate DataType="{x:Type viewModel:ProductViewModel}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Название" Grid.Column="0" Grid.Row="0" Margin="5" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True}" Margin="5" VerticalAlignment="Center"/>
+
+            <TextBlock Text="Цена" Grid.Column="0" Grid.Row="1" Margin="5" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Price, Mode=TwoWay, ValidatesOnDataErrors=True}" Margin="5" VerticalAlignment="Center"/>
+
+            <TextBlock Text="Единицы измерения" Grid.Column="0" Grid.Row="2" Margin="5" VerticalAlignment="Center"/>
+            <ComboBox Name="UnitList" Grid.Column="1" ItemsSource="{x:Static units:EnumExtenders.Units}" DisplayMemberPath="Value" 
+                      SelectedValue="{Binding Unit, Mode=TwoWay}" SelectedValuePath="Key" 
+                      Grid.Row="2" 
+                      Margin="5" VerticalAlignment="Center"/>
+
+            <TextBlock Text="Может быть продан" Grid.Column="0" Grid.Row="3" Margin="5" VerticalAlignment="Center"/>
+            <CheckBox IsChecked="{Binding CanBeSold}" Grid.Row="3" Grid.Column="1" Margin="5" VerticalAlignment="Center"/>
+
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewModel:PrepackViewModel}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Название" Grid.Column="0" Grid.Row="0" Margin="5" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True}" Margin="5" VerticalAlignment="Center"/>
+
+            <TextBlock Text="Цена" Grid.Column="0" Grid.Row="1" Margin="5" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Price, Mode=TwoWay, ValidatesOnDataErrors=True}" Margin="5" VerticalAlignment="Center"/>
+
+            <TextBlock Text="Единицы измерения" Grid.Column="0" Grid.Row="2" Margin="5" VerticalAlignment="Center"/>
+            <ComboBox Name="UnitList" Grid.Column="1" Grid.Row="2" 
+                      ItemsSource="{x:Static units:EnumExtenders.Units}" DisplayMemberPath="Value" SelectedValuePath="Key" 
+                      SelectedValue="{Binding Unit, Mode=TwoWay}" 
+                      Margin="5" VerticalAlignment="Center"/>
+
+            <TextBlock Text="Может быть продан" Grid.Column="0" Grid.Row="3" Margin="5" VerticalAlignment="Center"/>
+            <CheckBox IsChecked="{Binding CanBeSold}" Grid.Row="3" Grid.Column="1" Margin="5" VerticalAlignment="Center"/>
+
+            <Grid Grid.Row="4" Column="0" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <ListView Grid.Column="0" ItemsSource="{Binding Ingredients}" SelectedItem="{Binding SelectedIngredient}" Margin="5" Padding="0,0,0,5" MinHeight="200">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Ингредиент" Width="200">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsPresenter}}, Path=DataContext.Products}" 
+                                          DisplayMemberPath="Name" 
+                                          SelectedValue="{Binding Product, ValidatesOnDataErrors=True}"
+                                          Width="150"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Ед. измерения" DisplayMemberBinding="{Binding Product.Unit, Converter={converters:EnumToDescription}}" Width="100"/>
+                            <GridViewColumn Header="Количество" Width="160">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding Value, ValidatesOnDataErrors=True}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <Button Margin="5" Content="+" Width="25" Height="25" Name="AddIngredientButton" Command="{Binding AddIngredient}"/>
+                    <Button Margin="5" Content="-" Width="25" Height="25" Name="RemoveIngredientButton" Command="{Binding RemoveIngredient}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type viewModel:DishViewModel}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Название" Grid.Column="0" Grid.Row="0" Margin="5" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True}" Margin="5" VerticalAlignment="Center"/>
+
+            <TextBlock Text="Цена" Grid.Column="0" Grid.Row="1" Margin="5" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Price, Mode=TwoWay, ValidatesOnDataErrors=True}" Margin="5" VerticalAlignment="Center"/>
+
+            <TextBlock Text="Единицы измерения" Grid.Column="0" Grid.Row="2" Margin="5" VerticalAlignment="Center"/>
+            <ComboBox Name="UnitList" Grid.Column="1" Grid.Row="2" 
+                      ItemsSource="{x:Static units:EnumExtenders.Units}" DisplayMemberPath="Value" SelectedValuePath="Key" 
+                      SelectedValue="{Binding Unit, Mode=TwoWay}" Margin="5" VerticalAlignment="Center"/>
+
+            <TextBlock Text="Может быть продан" Grid.Column="0" Grid.Row="3" Margin="5" VerticalAlignment="Center"/>
+            <CheckBox IsChecked="{Binding CanBeSold}" Grid.Row="3" Grid.Column="1" Margin="5" VerticalAlignment="Center"/>
+
+            <Grid Grid.Row="4" Column="0" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <ListView Grid.Column="0" ItemsSource="{Binding Ingredients}" SelectedItem="{Binding SelectedIngredient}" Margin="5" Padding="0,0,0,5" MinHeight="200">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Ингредиент" Width="200">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsPresenter}}, Path=DataContext.Products}" 
+                                          DisplayMemberPath="Name" 
+                                          SelectedValue="{Binding Product, ValidatesOnDataErrors=True}"
+                                          Width="150"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Ед. измерения" DisplayMemberBinding="{Binding Product.Unit, Converter={converters:EnumToDescription}}" Width="100"/>
+                            <GridViewColumn Header="Количество" Width="160">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding Value, ValidatesOnDataErrors=True}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <Button Margin="5" Content="+" Width="25" Height="25" Name="AddIngredientButton" Command="{Binding AddIngredient}"/>
+                    <Button Margin="5" Content="-" Width="25" Height="25" Name="RemoveIngredientButton" Command="{Binding RemoveIngredient}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </DataTemplate>
+
+</ResourceDictionary>

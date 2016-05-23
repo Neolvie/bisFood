@@ -1,0 +1,52 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using NHibernate.Linq;
+
+namespace Shared.NHibernate
+{
+  public static class Repository
+  {
+    public static IQueryable<T> Get<T>() where T : Core.Entities.Base.Entity
+    {
+      return Environment.Session.Query<T>();
+    }
+
+    public static void SaveAll<T>(this IEnumerable<T> objects) where T : Core.Entities.Base.Entity
+    {
+      var objectList = objects.ToList();
+      if (!objectList.Any())
+        return;
+
+      var session = Environment.Session;
+
+      session.Clear();
+
+      using (var transact = session.BeginTransaction())
+      {
+        try
+        {
+          foreach (var entity in objectList)
+          {
+            if (entity.Id == 0)
+              session.Save(entity);
+            else
+              session.Update(entity);
+          }
+
+          transact.Commit();
+        }
+        catch (Exception)
+        {
+          transact.Rollback();
+          throw;
+        }
+      }
+    }
+
+    public static void Save<T>(this T entity) where T : Core.Entities.Base.Entity
+    {
+      SaveAll(new [] {entity});
+    }
+  }
+}

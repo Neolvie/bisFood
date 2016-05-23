@@ -1,0 +1,25 @@
+﻿@model Shared.Core.Entities.Ingredient
+
+@using (Html.BeginCollectionItem("Ingredients"))
+{
+    <div id="ingredientRow">
+        @Html.Hidden("IngredientId", Model.Id)
+        @Html.ValidationMessageFor(x => x.Product, null, new { @class = "text-danger" })
+        @Html.LabelFor(x => x.Name)
+        @Html.TextBoxFor(x => x.Name)
+
+        @Html.LabelFor(x => x.Product.Price)
+        @Html.TextBoxFor(x => x.Product.Price)
+
+        @Html.LabelFor(x => x.Product.Unit)
+        @Html.DropDownListFor(x => x.Product.Unit, ViewData["UnitsList"] as SelectList)
+
+        @Html.LabelFor(x => x.Value)
+        @Html.ValidationMessageFor(x => x.Value, null, new { @class = "text-danger" })
+        @Html.TextBoxFor(x => x.Value)
+
+        <a href="#" class="deleteIngredient"><span class="glyphicon glyphicon-remove" style="color: #FF0000;"></span></a> 
+    </div>
+}
+
+

@@ -1,0 +1,72 @@
+﻿<entities:EntityUserControl x:Class="ManagerClient.View.Entities.PrepackView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:view="clr-namespace:ManagerClient.View"     
+        xmlns:converters="clr-namespace:ManagerClient.Converters"
+        xmlns:entities="clr-namespace:ManagerClient.View.Entities"
+        mc:Ignorable="d"       
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Название" Grid.Column="0" Grid.Row="0" Margin="5" VerticalAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Prepack.Name, Mode=TwoWay}" Margin="5" VerticalAlignment="Center"/>
+
+        <TextBlock Text="Цена" Grid.Column="0" Grid.Row="1" Margin="5" VerticalAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Prepack.Price, Mode=TwoWay}" Margin="5" VerticalAlignment="Center"/>
+
+        <TextBlock Text="Единицы измерения" Grid.Column="0" Grid.Row="2" Margin="5" VerticalAlignment="Center"/>
+        <ComboBox Name="UnitList" Grid.Column="1" Grid.Row="2" SelectedValue="{Binding Prepack.Unit, Mode=TwoWay}" Margin="5" VerticalAlignment="Center"/>
+
+        <TextBlock Text="Может быть продан" Grid.Column="0" Grid.Row="3" Margin="5" VerticalAlignment="Center"/>
+        <CheckBox IsChecked="{Binding Prepack.CanBeSold}" Grid.Row="3" Grid.Column="1" Margin="5" VerticalAlignment="Center"/>
+
+        <Grid Grid.Row="4" Column="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <ListView Grid.Column="0" ItemsSource="{Binding Prepack.Ingredients}" SelectedItem="{Binding SelectedIngredient}" Margin="5" Padding="0,0,0,5" MinHeight="200">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Ингредиент" Width="200">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type entities:EntityUserControl}}, Path=DataContext.Products}" 
+                                          DisplayMemberPath="Name" 
+                                          SelectedValue="{Binding Product}"
+                                          Width="150"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Ед. измерения" DisplayMemberBinding="{Binding Product.Unit, Converter={converters:EnumToDescription}}" Width="100"/>
+                        <GridViewColumn Header="Количество" Width="160">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Value}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <Button Margin="5" Content="+" Width="25" Height="25" Name="AddIngredient" Click="AddIngredient_OnClick"/>
+                <Button Margin="5" Content="-" Width="25" Height="25" Name="DeleteIngredient" Click="DeleteIngredient_OnClick"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</entities:EntityUserControl>

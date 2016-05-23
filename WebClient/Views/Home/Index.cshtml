@@ -1,0 +1,55 @@
+﻿@using ClientBase.ViewModel
+@{
+  ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div style="margin-top: 20px; margin-bottom: 20px">
+            <span class="h2">Блюда</span>
+            <a href="@Url.Action("Index", "Dish", new {})" style="margin-left: 5px;">(создать)</a>
+        </div>
+        <table class="table table-striped">
+            @foreach (DishViewModel dish in ViewBag.DishList)
+            {
+            <tr>
+                <td>
+                    <a href="@Url.Action("Index", "Dish", new {id = dish.Id})">@dish.Name</a>
+                </td>
+            </tr>
+            }
+        </table>
+    </div>
+    <div class="col-md-4">
+        <div style="margin-top: 20px; margin-bottom: 20px">
+            <span class="h2">Полуфабрикаты</span>
+            <a href="@Url.Action("Index", "Prepack", new {})" style="margin-left: 5px;">(создать)</a>
+        </div>
+        <table class="table table-striped">
+            @foreach (PrepackViewModel prepack in ViewBag.PrepackList)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Index", "Prepack", new {id = prepack.Id})">@prepack.Name</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="col-md-4">
+        <div style="margin-top: 20px; margin-bottom: 20px">
+            <span class="h2">Продукты</span>
+            <a href="@Url.Action("Index", "Product", new {})" style="margin-left: 5px;">(создать)</a>
+        </div>
+        <table class="table table-striped">
+            @foreach (ProductViewModel product in ViewBag.ProductList)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Index", "Product", new { id = product.Id })">@product.Name</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

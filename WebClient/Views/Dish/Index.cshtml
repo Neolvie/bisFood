@@ -1,0 +1,61 @@
+﻿@model Shared.Core.Entities.Dish
+@{
+    ViewData["UnitsList"] = ViewBag.UnitsList;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="form">
+    @using (Html.BeginForm("Index", "Dish", new { }, FormMethod.Post, new { @id = "MainForm" }))
+    {
+    <div id="FormContainer">
+        <input type="hidden" value="@Model.Id" name="ModelId"/>
+        <input type="hidden" value="@Model.TypeGuid" Name="ModelType"/>
+        <div>
+            <div class="row" style="margin-bottom: 5px">
+                @Html.LabelFor(x => x.Name)
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @id = "NameField" })
+                @Html.ValidationMessageFor(x => x.Name, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="row" style="margin-bottom: 5px">
+                @Html.LabelFor(x => x.Price)
+                @Html.TextBoxFor(x => x.Price, new { @class = "form-control", @id = "PriceField" })
+                @Html.ValidationMessageFor(x => x.Price, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="row" style="margin-bottom: 5px">
+                @Html.LabelFor(x => x.Unit)
+                @Html.DropDownListFor(x => x.Unit, ViewBag.UnitsList as SelectList, new { @class = "form-control" })
+            </div>
+
+            <div class="row" style="margin-bottom: 5px">
+                @Html.LabelFor(x => x.CanBeSold)
+                @Html.CheckBoxFor(x => x.CanBeSold)
+            </div>
+
+            <div id="Ingredients">
+                @foreach (var ingredient in Model.Ingredients)
+                {
+                    Html.RenderPartial("Ingredient/IngredientRow", ingredient, ViewData);
+                }
+            </div>
+
+            @section scripts
+            {
+                <script>
+                    $("#Ingredients").on("click", ".deleteIngredient", function () {
+                        $(this).parents("#ingredientRow:first").remove();
+                        return false;
+                    });
+                </script>
+            }
+
+            <div class="row">
+                <button type="submit" id="SubmitButton" class="btn btn-primary btn-success">Сохранить</button>
+            </div>
+        </div>
+    </div>
+    }
+
+</div>
