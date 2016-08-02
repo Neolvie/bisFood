@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Projects\bisFood\bisFood\ManagerClient\obj\Debug\
+D:\git\bisFood\ManagerClient\obj\Debug\
 ManagerClient
 none
 false
 DEBUG;TRACE
-D:\Projects\bisFood\bisFood\ManagerClient\App.xaml
+D:\git\bisFood\ManagerClient\App.xaml
 41843942697
 
 18-915837076
-201889575326
+20-1655966729
 MainWindow.xaml;View\Entities\EntitiesDataTemplates.xaml;View\Entities\EntityBaseView.xaml;View\Pages\MainPage.xaml;
 
-False
+True
 
