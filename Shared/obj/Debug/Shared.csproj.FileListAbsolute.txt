@@ -10,3 +10,16 @@ D:\Projects\bisFood\bisFood\Shared\bin\Debug\NHibernate.xml
 D:\Projects\bisFood\bisFood\Shared\obj\Debug\Shared.dll
 D:\Projects\bisFood\bisFood\Shared\obj\Debug\Shared.pdb
 D:\Projects\bisFood\bisFood\Shared\obj\Debug\Shared.csprojResolveAssemblyReference.cache
+C:\Users\Belyak_IS\Source\Repos\bisFood\Shared\bin\Debug\Shared.dll
+C:\Users\Belyak_IS\Source\Repos\bisFood\Shared\bin\Debug\Shared.pdb
+C:\Users\Belyak_IS\Source\Repos\bisFood\Shared\bin\Debug\FluentNHibernate.dll
+C:\Users\Belyak_IS\Source\Repos\bisFood\Shared\bin\Debug\Iesi.Collections.dll
+C:\Users\Belyak_IS\Source\Repos\bisFood\Shared\bin\Debug\NHibernate.dll
+C:\Users\Belyak_IS\Source\Repos\bisFood\Shared\bin\Debug\FluentNHibernate.pdb
+C:\Users\Belyak_IS\Source\Repos\bisFood\Shared\bin\Debug\FluentNHibernate.xml
+C:\Users\Belyak_IS\Source\Repos\bisFood\Shared\bin\Debug\Iesi.Collections.xml
+C:\Users\Belyak_IS\Source\Repos\bisFood\Shared\bin\Debug\NHibernate.xml
+C:\Users\Belyak_IS\Source\Repos\bisFood\Shared\obj\Debug\Shared.csprojResolveAssemblyReference.cache
+C:\Users\Belyak_IS\Source\Repos\bisFood\Shared\obj\Debug\Shared.dll
+C:\Users\Belyak_IS\Source\Repos\bisFood\Shared\obj\Debug\Shared.pdb
+C:\Users\Belyak_IS\Source\Repos\bisFood\Shared\bin\Debug\HibernatingRhinos.Profiler.Appender.dll

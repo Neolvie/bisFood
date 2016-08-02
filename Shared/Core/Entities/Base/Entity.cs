@@ -66,17 +66,7 @@ namespace Shared.Core.Entities.Base
     /// </summary>
     public virtual void Delete()
     {
-      if (this.Id == 0)
-        return;
-
-      var session = NHibernate.Environment.Session;
-      using (var transact = session.BeginTransaction())
-      {
-        var entity = session.Load(this.GetType(), this.Id);
-        session.Delete(entity);
-        transact.Commit();
-        this.Id = 0;
-      }
+      Repository.Delete(this);
 
       OnEntityDeleted();
     }
@@ -103,7 +93,7 @@ namespace Shared.Core.Entities.Base
     public virtual event EntityEventHandler EntitySaved;
     public virtual event EntityEventHandler EntityDeleted;
     public virtual event EntityEventHandler EntityUpdated;
-    
+
     #endregion
 
     #region Базовый класс

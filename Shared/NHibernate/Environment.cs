@@ -57,6 +57,7 @@ namespace Shared.NHibernate
       CreateDatabaseIfNotExist(ConnectionString);
 
       _sessionFactory = CreateSessionFactory();
+      HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
       Session = OpenSession();
 
       Initialized = true;
@@ -74,7 +75,7 @@ namespace Shared.NHibernate
     {
       return Fluently
         .Configure()
-        .Database(MsSqlConfiguration.MsSql2012.ConnectionString(ConnectionString))
+        .Database(MsSqlConfiguration.MsSql2008.ConnectionString(ConnectionString))
         .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Environment>())
         .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(false, true))
         .BuildSessionFactory();

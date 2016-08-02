@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using NHibernate.Linq;
+using NHibernate.SqlCommand;
 
 namespace Shared.NHibernate
 {
@@ -19,9 +20,8 @@ namespace Shared.NHibernate
         return;
 
       var session = Environment.Session;
-
-      session.Clear();
-
+      var failed = false;
+      
       using (var transact = session.BeginTransaction())
       {
         try
@@ -38,15 +38,64 @@ namespace Shared.NHibernate
         }
         catch (Exception)
         {
-          transact.Rollback();
-          throw;
+          failed = true;
         }
+      }
+
+      if (!failed) return;
+      try
+      {
+        Environment.Session.Dispose();
+      }
+      finally
+      {
+        Environment.Session = Environment.OpenSession();
       }
     }
 
     public static void Save<T>(this T entity) where T : Core.Entities.Base.Entity
     {
       SaveAll(new [] {entity});
+    }
+
+    public static void DeleteAll<T>(this IEnumerable<T> objects) where T : Core.Entities.Base.Entity
+    {
+      var objectList = objects.ToList();
+      if (!objectList.Any())
+        return;
+
+      var session = Environment.Session;
+      var failed = false;
+
+      using (var transact = session.BeginTransaction())
+      {
+        try
+        {
+          foreach (var entity in objectList.Where(entity => entity.Id != 0))
+            session.Delete(entity);
+
+          transact.Commit();
+        }
+        catch (Exception)
+        {
+          failed = true;
+        }
+      }
+
+      if (!failed) return;
+      try
+      {
+        Environment.Session.Dispose();
+      }
+      finally
+      {
+        Environment.Session = Environment.OpenSession();
+      }
+    }
+
+    public static void Delete<T>(this T entity) where T : Core.Entities.Base.Entity
+    {
+      DeleteAll(new [] { entity });
     }
   }
 }
