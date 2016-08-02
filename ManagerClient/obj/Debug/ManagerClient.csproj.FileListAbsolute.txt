@@ -69,3 +69,6 @@ C:\Users\Belyak_IS\Source\Repos\bisFood\ManagerClient\obj\Debug\ManagerClient.cs
 C:\Users\Belyak_IS\Source\Repos\bisFood\ManagerClient\obj\Debug\ManagerClient.exe
 C:\Users\Belyak_IS\Source\Repos\bisFood\ManagerClient\obj\Debug\ManagerClient.pdb
 C:\Users\Belyak_IS\Source\Repos\bisFood\ManagerClient\bin\Debug\HibernatingRhinos.Profiler.Appender.dll
+D:\git\bisFood\ManagerClient\bin\Debug\ManagerClient.exe.config
+D:\git\bisFood\ManagerClient\obj\Debug\ManagerClient.exe
+D:\git\bisFood\ManagerClient\obj\Debug\ManagerClient.pdb
